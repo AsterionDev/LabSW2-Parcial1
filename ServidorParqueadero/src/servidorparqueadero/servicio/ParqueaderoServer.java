@@ -11,12 +11,15 @@ import java.util.Scanner;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import servidorparqueadero.negocio.Conductor;
+import servidorparqueadero.negocio.GestorConductores;
 import servidorparqueadero.negocio.Vehiculo;
 import servidorparqueadero.negocio.GestorVehiculos;
 
 public class ParqueaderoServer implements Runnable {
 
-    private final GestorVehiculos gestor;
+    private final GestorVehiculos gestorV;
+    private final GestorConductores gestorC;
 
     private static ServerSocket ssock;
     private static Socket socket;
@@ -29,7 +32,8 @@ public class ParqueaderoServer implements Runnable {
      * Constructor
      */
     public ParqueaderoServer() {
-        gestor = new GestorVehiculos();
+        gestorV = new GestorVehiculos();
+        gestorC= new GestorConductores();
     }
     /**
      * Logica completa del servidor
@@ -144,11 +148,20 @@ public class ParqueaderoServer implements Runnable {
         switch (accion) {
             case "consultarVehiculosPorConductor":
                 String id = parametros[1];
-                ArrayList<Vehiculo> lista=gestor.vehiculosPorConductor(id);
+                ArrayList<Vehiculo> lista=gestorV.vehiculosPorConductor(id);
                 if (lista.isEmpty()) {
                     salidaDecorada.println("NO_ENCONTRADO");
                 } else {
                     salidaDecorada.println(parseToJSON(lista));
+                }
+                break;
+            case "consultarConductor":
+                String idConductor = parametros[1];
+                Conductor cond=gestorC.consultarConductor(idConductor);
+                if (cond==null) {
+                    salidaDecorada.println("NO_ENCONTRADO");
+                } else {
+                    salidaDecorada.println(parseToJSON(cond));
                 }
                 break;
         }
@@ -176,6 +189,17 @@ public class ParqueaderoServer implements Runnable {
         jsonobj.addProperty("placa", veh.getPlaca());
         jsonobj.addProperty("marca", veh.getMarca());
         jsonobj.addProperty("tipo", veh.getTipo());
+        return jsonobj.toString();
+    }
+    
+    private String parseToJSON(Conductor cond) {
+        JsonObject jsonobj = new JsonObject();
+        jsonobj.addProperty("id", cond.getId());
+        jsonobj.addProperty("nombres", cond.getNombres());
+        jsonobj.addProperty("apellidos", cond.getApellidos());
+        jsonobj.addProperty("fechanacimiento", cond.getFechaNacimiento());
+        jsonobj.addProperty("sexo", cond.getSexo());
+        jsonobj.addProperty("rol", cond.getRol());
         return jsonobj.toString();
     }
     

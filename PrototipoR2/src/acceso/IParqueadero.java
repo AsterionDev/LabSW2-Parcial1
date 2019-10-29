@@ -11,5 +11,6 @@ package acceso;
  */
 public interface IParqueadero {
     public String consultarVehiculosPorConductor(String idConductor);
+    public String consultarConductor(String idConductor);
     
 }

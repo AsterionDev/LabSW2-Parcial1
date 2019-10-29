@@ -35,7 +35,23 @@ public class ServicioParqueaderoSocket implements IParqueadero{
         String respuesta = null;
         try {
             conectar(IP_SERVIDOR, PUERTO);
-            respuesta = leerFlujoEntradaSalida(id);
+            respuesta = leerFlujoEntradaSalida("consultarVehiculosPorConductor," + id);
+            cerrarFlujos();
+            desconectar();
+
+        } catch (IOException ex) {
+            Logger.getLogger(ServicioParqueaderoSocket.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return respuesta;
+
+    }
+    
+    @Override
+    public String consultarConductor(String id) {
+        String respuesta = null;
+        try {
+            conectar(IP_SERVIDOR, PUERTO);
+            respuesta = leerFlujoEntradaSalida("consultarConductor," + id);
             cerrarFlujos();
             desconectar();
 
@@ -46,13 +62,13 @@ public class ServicioParqueaderoSocket implements IParqueadero{
 
     }
 
-    private String leerFlujoEntradaSalida(String id) throws IOException {
+    private String leerFlujoEntradaSalida(String solicitud) throws IOException {
         String respuesta = "";
         entradaDecorada = new Scanner(socket.getInputStream());
         salidaDecorada = new PrintStream(socket.getOutputStream());
         salidaDecorada.flush();
         // Usando el protocolo de comunicación
-        salidaDecorada.println("consultarVehiculosPorConductor," + id);
+        salidaDecorada.println(solicitud);
         if (entradaDecorada.hasNextLine()) {
             respuesta = entradaDecorada.nextLine();
         }
