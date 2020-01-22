@@ -4,7 +4,12 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Asus/Desktop/TrabajosU/SEM%206/LAB%20SOFTWARE/Parcial1/PrototipoR2/src/parqueadero/negocio/GestorConductores.java</file>
+            <file>file:/C:/Users/Asus/Desktop/TrabajosU/SEM%206/LAB%20SOFTWARE/Parcial1/PrototipoR2/src/parqueadero/presentacion/GUIPrincipal.java</file>
+            <file>file:/C:/Users/Asus/Desktop/TrabajosU/SEM%206/LAB%20SOFTWARE/Parcial1/PrototipoR2/src/parqueadero/negocio/Conductor.java</file>
             <file>file:/C:/Users/Asus/Desktop/TrabajosU/SEM%206/LAB%20SOFTWARE/Parcial1/PrototipoR2/test/parqueadero/negocio/GestorConductoresTest.java</file>
+            <file>file:/C:/Users/Asus/Desktop/TrabajosU/SEM%206/LAB%20SOFTWARE/Parcial1/PrototipoR2/src/parqueadero/negocio/Vehiculo.java</file>
+            <file>file:/C:/Users/Asus/Desktop/TrabajosU/SEM%206/LAB%20SOFTWARE/Parcial1/PrototipoR2/test/parqueadero/negocio/GestorVehiculosTest.java</file>
+            <file>file:/C:/Users/Asus/Desktop/TrabajosU/SEM%206/LAB%20SOFTWARE/Parcial1/PrototipoR2/src/parqueadero/negocio/GestorVehiculos.java</file>
         </group>
     </open-files>
 </project-private>
