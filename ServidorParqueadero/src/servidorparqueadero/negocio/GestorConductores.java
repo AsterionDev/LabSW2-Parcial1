@@ -12,27 +12,64 @@ import java.sql.SQLException;
  * @author Asus
  */
 public class GestorConductores {
-     ConectorBD con=new ConectorBD();
+     ConectorBD conector=new ConectorBD();
     
     
     public Conductor consultarConductor(String idConductor) throws ClassNotFoundException, SQLException  {
         Conductor conductor=null;
-        con.conectarse();
+        conector.conectarse();
        
-        con.crearConsulta("SELECT * FROM conductores WHERE idc ="+idConductor);
-        if(con.getResultado().next()) {
+        conector.crearConsulta("SELECT * FROM conductores WHERE idc ="+idConductor);
+        if(conector.getResultado().next()) {
            conductor=new Conductor();
-           conductor.setId(con.getResultado().getString("idc"));
-           conductor.setNombres(con.getResultado().getString("nombrec"));
-           conductor.setApellidos(con.getResultado().getString("apellidoc"));
-           conductor.setSexo(con.getResultado().getString("generoc"));
-           conductor.setFechaNacimiento(con.getResultado().getString("fnacimientoc"));
-           conductor.setRol(con.getResultado().getString("rolc"));
+           conductor.setId(conector.getResultado().getString("idc"));
+           conductor.setNombres(conector.getResultado().getString("nombrec"));
+           conductor.setApellidos(conector.getResultado().getString("apellidoc"));
+           conductor.setSexo(conector.getResultado().getString("generoc"));
+           conductor.setFechaNacimiento(conector.getResultado().getString("fnacimientoc"));
+           conductor.setRol(conector.getResultado().getString("rolc"));
                    
         }
             
-        con.desconectarse();
+        conector.desconectarse();
         return conductor;        
+    }
+    
+    
+    public void agregarConductor(String id, String nombres, String apellidos, String genero, String fnacimiento, String rol) throws ClassNotFoundException, SQLException {
+        conector.conectarse();
+        conector.actualizar("INSERT INTO conductores (idc, nombrec, apellidoc, generoc, fnacimientoc, rolc)"
+                + " VALUES ("
+                + "" + id + ","
+                + "'" + nombres + "',"
+                + "'" + apellidos + "',"
+                + "'" + genero + "',"
+                + "'" + fnacimiento + "',"
+                + "'" + rol + "'"
+                + ")");
+        conector.desconectarse();
+    }
+    
+    public void editarConductor(String id, String nombres, String apellidos, String genero, String fnacimiento, String rol) throws ClassNotFoundException, SQLException {
+        conector.conectarse();
+        conector.actualizar("UPDATE conductores SET "
+                + "nombrec = '" + nombres + "',"
+                + "apellidoc ='" + apellidos + "',"
+                + "generoc ='" + genero + "',"
+                + "fnacimientoc = '" + fnacimiento + "',"
+                + "rolc ='" + rol + "'"
+                + " WHERE idc ='" + id
+                + "'");
+        conector.desconectarse();
+
+    }
+    
+    public void eliminarConductor(String id) throws ClassNotFoundException, SQLException {
+        conector.conectarse();
+        conector.actualizar("DELETE FROM conductores  "
+                + " WHERE idc ='" + id
+                + "'");
+        conector.desconectarse();
     }
 
 }
