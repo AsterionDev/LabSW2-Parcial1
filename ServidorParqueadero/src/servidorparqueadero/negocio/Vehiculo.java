@@ -19,31 +19,51 @@ public class Vehiculo {
         this.marca = marca;
         this.tipo = tipo;
     }
-
+    /**
+     * Constructor de vehiculo
+     */
     public Vehiculo() {
 
     }
-
+    /**
+     * Devuelve la placa
+     * @return placa
+     */
     public String getPlaca() {
         return placa;
     }
-
+    /**
+     * Establece la placa
+     * @param placa 
+     */
     public void setPlaca(String placa) {
         this.placa = placa;
     }
-
+    /**
+     * Devuelve la marca
+     * @return marca
+     */
     public String getMarca() {
         return marca;
     }
-
+    /**
+     * Establece la marca
+     * @param marca 
+     */
     public void setMarca(String marca) {
         this.marca = marca;
     }
-
+    /**
+     * Devuelve el tipo
+     * @return tipo
+     */
     public String getTipo() {
         return tipo;
     }
-
+    /**
+     * Establece el tipo
+     * @param tipo 
+     */
     public void setTipo(String tipo) {
         this.tipo = tipo;
     }

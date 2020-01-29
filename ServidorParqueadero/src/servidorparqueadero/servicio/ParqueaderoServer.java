@@ -191,7 +191,11 @@ public class ParqueaderoServer implements Runnable {
         jsonobj.addProperty("tipo", veh.getTipo());
         return jsonobj.toString();
     }
-    
+    /**
+     * Convierte el objeto Conductor a json
+     * @param cond Objeto conductor
+     * @return  cadena json
+     */
     private String parseToJSON(Conductor cond) {
         JsonObject jsonobj = new JsonObject();
         jsonobj.addProperty("id", cond.getId());
@@ -202,7 +206,11 @@ public class ParqueaderoServer implements Runnable {
         jsonobj.addProperty("rol", cond.getRol());
         return jsonobj.toString();
     }
-    
+    /**
+     * Convierte el arreglo de Vehiculos a json
+     * @param lista Lista de vehiculos
+     * @return cadena json
+     */
     private String parseToJSON(ArrayList<Vehiculo> lista){
         String resultado="";
         for(Vehiculo v : lista){

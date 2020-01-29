@@ -13,7 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
+ *Conexion con la base de datos
  * @author Asus
  */
 public class ServicioParqueaderoSocket implements IParqueadero{
@@ -45,7 +45,11 @@ public class ServicioParqueaderoSocket implements IParqueadero{
         return respuesta;
 
     }
-    
+    /***
+     * Obtiene la informacion de un conductor en formato Json
+     * @param id identificacion del conductor
+     * @return informacion del conduuctor
+     */
     @Override
     public String consultarConductor(String id) {
         String respuesta = null;
@@ -61,7 +65,12 @@ public class ServicioParqueaderoSocket implements IParqueadero{
         return respuesta;
 
     }
-
+    /***
+     * Leer el flujo de entrada salida
+     * @param solicitud solicitud que se va a procesar
+     * @return respuesta a la solicitud
+     * @throws IOException 
+     */
     private String leerFlujoEntradaSalida(String solicitud) throws IOException {
         String respuesta = "";
         entradaDecorada = new Scanner(socket.getInputStream());
@@ -74,12 +83,16 @@ public class ServicioParqueaderoSocket implements IParqueadero{
         }
         return respuesta;
     }
-
+    /***
+     * Cerrar el flujo
+     */
     private void cerrarFlujos() {
         salidaDecorada.close();
         entradaDecorada.close();
     }
-
+    /***
+     * cerrar el socket
+     */
     private void desconectar() {
         try {
             socket.close();
@@ -87,7 +100,12 @@ public class ServicioParqueaderoSocket implements IParqueadero{
             Logger.getLogger(ServicioParqueaderoSocket.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    /***
+     * abrir el socket y conectar
+     * @param address direccion (en este caso: localhost)
+     * @param port puerto de conexion
+     * @throws IOException 
+     */
     public void conectar(String address, int port) throws IOException {
         socket = new Socket(address, port);
         System.out.println("Conectado");

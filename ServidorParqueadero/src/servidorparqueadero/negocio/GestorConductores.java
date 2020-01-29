@@ -14,7 +14,13 @@ import java.sql.SQLException;
 public class GestorConductores {
      ConectorBD conector=new ConectorBD();
     
-    
+    /**
+     * Consulta y devuelve un conductor utilizando el id
+     * @param idConductor Identificacion del conductor a buscar
+     * @return Conductor 
+     * @throws ClassNotFoundException
+     * @throws SQLException 
+     */
     public Conductor consultarConductor(String idConductor) throws ClassNotFoundException, SQLException  {
         Conductor conductor=null;
         conector.conectarse();
@@ -35,7 +41,17 @@ public class GestorConductores {
         return conductor;        
     }
     
-    
+    /**
+     * Agrega un conductor a la base de datos
+     * @param id Identificacion
+     * @param nombres Nommbres 
+     * @param apellidos Apellidos
+     * @param genero Genero
+     * @param fnacimiento   Fecha de nacimiento
+     * @param rol Rol
+     * @throws ClassNotFoundException
+     * @throws SQLException 
+     */
     public void agregarConductor(String id, String nombres, String apellidos, String genero, String fnacimiento, String rol) throws ClassNotFoundException, SQLException {
         conector.conectarse();
         conector.actualizar("INSERT INTO conductores (idc, nombrec, apellidoc, generoc, fnacimientoc, rolc)"
@@ -49,7 +65,17 @@ public class GestorConductores {
                 + ")");
         conector.desconectarse();
     }
-    
+    /**
+     * Modifica un conductor
+     * @param id Identificacion
+     * @param nombres Nombres
+     * @param apellidos Apellidos
+     * @param genero Genero
+     * @param fnacimiento   Fecha nacimiento
+     * @param rol Rol
+     * @throws ClassNotFoundException
+     * @throws SQLException 
+     */
     public void editarConductor(String id, String nombres, String apellidos, String genero, String fnacimiento, String rol) throws ClassNotFoundException, SQLException {
         conector.conectarse();
         conector.actualizar("UPDATE conductores SET "
@@ -63,7 +89,12 @@ public class GestorConductores {
         conector.desconectarse();
 
     }
-    
+    /**
+     * Elimina el conductor identificado por id
+     * @param id Identificacion
+     * @throws ClassNotFoundException
+     * @throws SQLException 
+     */
     public void eliminarConductor(String id) throws ClassNotFoundException, SQLException {
         conector.conectarse();
         conector.actualizar("DELETE FROM conductores  "

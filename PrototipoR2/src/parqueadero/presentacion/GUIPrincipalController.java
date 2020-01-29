@@ -1,4 +1,4 @@
-/*
+   /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -15,7 +15,7 @@ import parqueadero.negocio.GestorVehiculos;
 import parqueadero.negocio.Vehiculo;
 
 /**
- *
+ * Controlador del GUI Principal
  * @author Asus
  */
 public class GUIPrincipalController extends AActionController{
@@ -28,7 +28,11 @@ public class GUIPrincipalController extends AActionController{
         gestorConductores=new GestorConductores();
         this.vista = (GUIPrincipal) myView;
     }
-
+    
+    /**
+     * Actualizar la interfaz principal, segun el evento ocurrido
+     * @param ae Evento
+     */
     @Override
     public void actualizar(ActionEvent ae) {
         switch (ae.getActionCommand()) {

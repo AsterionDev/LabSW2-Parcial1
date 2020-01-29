@@ -24,7 +24,11 @@ public class ConectorBD {
     public ConectorBD() {
 
     }
-
+    /**
+     * Establece la conexion con la base de datos
+     * @throws ClassNotFoundException
+     * @throws SQLException 
+     */
     public void conectarse() throws ClassNotFoundException, SQLException {
         //
      Class.forName("org.mariadb.jdbc.Driver");
@@ -36,7 +40,7 @@ public class ConectorBD {
      * @param sql
      * @throws SQLException 
      */
-    public void crearConsulta(String sql) throws SQLException {
+   public  void crearConsulta(String sql) throws SQLException {
         st = cn.createStatement();
         rs = st.executeQuery(sql);
     }

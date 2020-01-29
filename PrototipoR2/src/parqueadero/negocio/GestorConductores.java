@@ -12,7 +12,7 @@ import java.util.Properties;
 import mvcf.AModel;
 
 /**
- *
+ * Gestiona los conductores
  * @author Asus
  */
 public class GestorConductores extends AModel {
@@ -22,7 +22,11 @@ public class GestorConductores extends AModel {
          parqueadero = new ServicioParqueaderoSocket();
      }
     
-    
+     /***
+      * consulta la informacion del conductor, teniendo en cuenta el id
+      * @param idConductor identificacion del conductor
+      * @return  retorna un conductor
+      */
     public Conductor consultarConductor(String idConductor) {
         Conductor cond=new Conductor();
         String json = parqueadero.consultarConductor(idConductor);
@@ -32,7 +36,11 @@ public class GestorConductores extends AModel {
         
         return cond;        
     }
-   
+    /***
+    * Obtener la informacion de formato Json y asignarsela a un conductor
+    * @param cond conductor al cual se le asignara la informacion
+    * @param json cadena en formato Json de donde se obtendrá la informacion
+    */
      private void parseToConductor(Conductor cond, String json) {
         Gson gson = new Gson();
         Properties properties = gson.fromJson(json, Properties.class);
